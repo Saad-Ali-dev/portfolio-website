@@ -1,6 +1,9 @@
 import React from "react";
 import AnimatedHeroText from "@/components/AnimatedHeroText";
 import ProfilePicture from "@/components/AnimatedProfilePicture";
+import GlobeTimeBox from "@/components/GlobeTimeBox";
+import ContactEmailBox from "@/components/ContactEmailBox";
+import TechStackBox from "@/components/TechStackBox";
 
 export default function HomePage() {
   return (
@@ -15,14 +18,19 @@ export default function HomePage() {
             <ProfilePicture />
           </div>
         </div>
-        {/* 
-          Other content for your homepage will go beneath this section.
-          For example:
-          <section className="mt-16 md:mt-24 py-12 text-center">
-            <h3 className="text-3xl font-semibold text-slate-100">My Projects</h3>
-            <p className="mt-4 text-slate-300">Showcase your projects here...</p>
-          </section>
-        */}
+        {/* New Section for GlobeTimeBox and other cards */}
+        <section className="mt-16 md:mt-24 py-12 w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {/* Box 1: GlobeTimeBox */}
+            <GlobeTimeBox />
+
+            {/* Box 2: ContactEmailBox */}
+            <ContactEmailBox />
+
+            {/* Box 3: Tech box */}
+            <TechStackBox />
+          </div>
+        </section>
       </div>
     </main>
   );
