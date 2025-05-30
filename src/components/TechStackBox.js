@@ -106,7 +106,7 @@ export default function TechStackBox() {
           Passionate about cutting-edge technologies
         </span>
       </h3>
-      <div className="w-full flex-grow flex flex-col justify-center space-y-1 sm:space-y-2 pb-4 sm:pb-0">
+      <div className="w-full flex-grow flex flex-col justify-center space-y-1 sm:space-y-2 pb-4 sm:py-4 md:py-6">
         <TechMarqueeRow techItems={row1} duration={40} direction={1} />
         <TechMarqueeRow techItems={row2} duration={40} direction={-1} />
         <TechMarqueeRow techItems={row3} duration={40} direction={1} />
