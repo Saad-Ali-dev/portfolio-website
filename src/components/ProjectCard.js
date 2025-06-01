@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Button from "./Button";
 import { FaAngleDoubleRight } from "react-icons/fa";
+import Link from "next/link";
 
 export default function ProjectCard({
   project,
@@ -35,34 +36,29 @@ export default function ProjectCard({
     };
   }, []); // Empty dependency array means this runs once on mount and cleans up on unmount
 
-  const handleProjectClick = () => {
-    // Placeholder for navigation or opening a modal
-    // If project.link exists, you could use: window.open(project.link, '_blank');
-    console.log(`Clicked on project: ${currentProject.name}`);
-  };
-
   return (
     <div
       className={`relative bg-slate-900/70 backdrop-blur-md border border-slate-700 rounded-3xl shadow-2xl flex flex-col overflow-hidden transition-all duration-300 ease-in-out hover:border-slate-600/80 ${className}`}
     >
       {/* Image Area */}
-      <div
-        className="w-full relative z-10 cursor-pointer"
-        onClick={handleProjectClick}
-      >
-        {/* Aspect ratio container for the image */}
-        <div className="aspect-[16/9] ">
-          <img
-            src={currentProject.image}
-            alt={`Screenshot of ${currentProject.name}`}
-            className={
-              `w-full h-full object-cover` +
-              (customClasses && customClasses[0] ? ` ${customClasses[0]}` : "")
-            }
-            loading="lazy"
-          />
+      <Link href={`/projects/${currentProject.slug}`}>
+        <div className="w-full relative z-10 cursor-pointer">
+          {/* Aspect ratio container for the image */}
+          <div className="aspect-[16/9] ">
+            <img
+              src={currentProject.image}
+              alt={`Screenshot of ${currentProject.name}`}
+              className={
+                `w-full h-full object-cover` +
+                (customClasses && customClasses[0]
+                  ? ` ${customClasses[0]}`
+                  : "")
+              }
+              loading="lazy"
+            />
+          </div>
         </div>
-      </div>
+      </Link>
 
       {/* Content Area */}
       <div className="p-4 sm:p-5 lg:p-6 flex-grow flex flex-col">
@@ -70,7 +66,9 @@ export default function ProjectCard({
           <h3 className="text-lg md:text-[25px] font-semibold mb-2 text-slate-100 leading-tight">
             {currentProject.name}
           </h3>
-          <Button text="More details" handleClick={handleProjectClick} />
+          <Link href={`/projects/${currentProject.slug}`}>
+            <Button text="More details" />
+          </Link>
         </div>
         <div
           className={`${customClasses && customClasses[1] ? customClasses[1] : ""}`}

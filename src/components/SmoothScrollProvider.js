@@ -1,49 +1,54 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState, useRef } from "react"; // Added useState, useRef
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
+import ScrollContext from "@/contexts/ScrollContext"; // Import the context
+
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 export default function SmoothScrollProvider({ children }) {
+  const [smootherInstance, setSmootherInstance] = useState(null);
+  const smootherRef = useRef(null); // To help with cleanup
+
   useEffect(() => {
-    // Register GSAP plugins
-    gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+    const wrapper = document.getElementById("smooth-wrapper");
+    const content = document.getElementById("smooth-content");
 
-    // Create the smooth scroller FIRST!
-    // Ensure the #smooth-wrapper and #smooth-content elements exist in the DOM
-    // before ScrollSmoother.create() is called.
-    const smoother = ScrollSmoother.create({
-      wrapper: "#smooth-wrapper", // Or it will auto-find by ID
-      content: "#smooth-content", // Or it will auto-find by ID
-      smooth: 0.8, // how long (in seconds) it takes to "catch up" to the native scroll position [1]
-      effects: true, // looks for data-speed and data-lag attributes on elements for parallax [1]
-      normalizeScroll: true, // Prevents mobile browser address bars from hiding/showing and solves multi-thread issues [1]
-      smoothTouch: 0.1, // Shorter smoothing time on touch devices (default is NO smoothing) [1]
-      // You can add more options from the docs here: https://gsap.com/docs/v3/Plugins/ScrollSmoother/
-    });
+    if (wrapper && content) {
+      const sm = ScrollSmoother.create({
+        wrapper: wrapper,
+        content: content,
+        smooth: 0.8,
+        effects: true,
+        normalizeScroll: true,
+        smoothTouch: 0.1,
+      });
+      setSmootherInstance(sm);
+      smootherRef.current = sm; // Store in ref for cleanup
+    } else {
+      console.warn(
+        "SmoothScrollProvider: #smooth-wrapper or #smooth-content not found.",
+      );
+    }
 
-    // Optional: Add any ScrollTrigger animations here AFTER the smoother is created
-    // For example, to pin an element:
-    // ScrollTrigger.create({
-    //   trigger: ".my-section",
-    //   pin: true,
-    //   start: "top top",
-    //   end: "+=500",
-    //   markers: true, // For debugging
-    // });
-
-    // Cleanup function: Important for Next.js to prevent memory leaks
+    // Cleanup function
     return () => {
-      if (smoother) {
-        smoother.kill(); // Kills ScrollSmoother instance and its effects [1]
+      if (smootherRef.current) {
+        // console.log("Killing smoother instance from SmoothScrollProvider");
+        smootherRef.current.kill();
+        smootherRef.current = null;
       }
-      if (ScrollTrigger.getAll().length > 0) {
-        ScrollTrigger.getAll().forEach((trigger) => trigger.kill()); // Kill any ScrollTriggers
-      }
-      ScrollTrigger.normalizeScroll(false); // Disable normalizeScroll on unmount
+      // Kill all ScrollTriggers created by this smoother or globally if necessary.
+      // ScrollTrigger.getAll().forEach(trigger => trigger.kill()); // Be cautious with global kill
+      // ScrollTrigger.normalizeScroll(false); // Reset normalizeScroll
     };
-  }, []); // Empty dependency array ensures this runs once on mount
+  }, []);
 
-  return <>{children}</>;
+  return (
+    <ScrollContext.Provider value={smootherInstance}>
+      {children}
+    </ScrollContext.Provider>
+  );
 }

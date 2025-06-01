@@ -2,6 +2,7 @@ export const homeProjects = [
   {
     id: 1,
     name: "Next Ventures",
+    slug: "amazon-clone-ecommerce",
     shortDescription:
       "A platform designed for early-stage entrepreneurs to pitch, browse, and engage with startup ideas. It's built to impress both users and investors with blazing speed, compelling visuals, and a modern tech stack.",
     mainFeatures: [
@@ -32,6 +33,7 @@ export const homeProjects = [
   {
     id: 2,
     name: "Zenith Minds",
+    slug: "ai-chatbot",
     shortDescription:
       "Developed ZenithMinds, an educational platform connecting students and instructors, fostering global collaboration and continuous learning.",
     mainFeatures: [
