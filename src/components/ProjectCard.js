@@ -81,7 +81,7 @@ export default function ProjectCard({
           {showMainFeaturesOnLg &&
             currentProject.mainFeatures &&
             currentProject.mainFeatures.length > 0 && (
-              <ul className="hidden lg:block space-y-2 mb-4 text-slate-300/90 text-[16px]">
+              <ul className="hidden lg:block space-y-2 mb-4 text-slate-300/90 text-[16px] mt-10">
                 {currentProject.mainFeatures.map((feature, index) => (
                   <li key={index} className="flex items-start">
                     <FaAngleDoubleRight className="w-4 h-4 flex-shrink-0 mt-0.5 mr-2 relative top-[3.5px] text-gray-500" />

@@ -16,7 +16,7 @@ export default function SmoothScrollProvider({ children }) {
     const smoother = ScrollSmoother.create({
       wrapper: "#smooth-wrapper", // Or it will auto-find by ID
       content: "#smooth-content", // Or it will auto-find by ID
-      smooth: 1, // how long (in seconds) it takes to "catch up" to the native scroll position [1]
+      smooth: 0.8, // how long (in seconds) it takes to "catch up" to the native scroll position [1]
       effects: true, // looks for data-speed and data-lag attributes on elements for parallax [1]
       normalizeScroll: true, // Prevents mobile browser address bars from hiding/showing and solves multi-thread issues [1]
       smoothTouch: 0.1, // Shorter smoothing time on touch devices (default is NO smoothing) [1]

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { BsArrowRight } from "react-icons/bs";
 import { homeProjects } from "@/lib/homeProjectsData";
 import ProjectCard from "./ProjectCard";
+import FancyButton from "./FancyButton";
 
 export default function ProjectsSection() {
   const projectsToShow = homeProjects.slice(0, 3);
@@ -10,8 +11,11 @@ export default function ProjectsSection() {
   return (
     <div className="w-full max-w-6xl mx-auto py-12 sm:py-16 lg:py-20">
       <div className="flex flex-col items-center justify-center mb-10 sm:mb-12">
-        <h2 className="text-4xl text-center sm:text-5xl font-bold bg-gradient-to-r from-[#FF47A1] to-[#FF9A8B] bg-clip-text text-transparent pb-2">
-          Featured Projects
+        <h2 className="text-4xl text-center sm:text-5xl font-bold pb-2">
+          Featured{" "}
+          <span className="bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 bg-clip-text text-transparent">
+            Projects
+          </span>
         </h2>
         <p className="text-slate-400 mt-2 text-center text-sm sm:text-base max-w-2xl">
           Here are a few selections of my recent work. Want to see more? Feel
@@ -47,12 +51,9 @@ export default function ProjectsSection() {
           />
         </div>
       </div>
-      <div className="relative text-center mt-12 sm:mt-16 md:mt-[-10%] lg:mt-16">
+      <div className="relative flex justify-center text-center mt-12 sm:mt-16 md:mt-[-10%] lg:mt-16">
         <Link href="/projects">
-          <div className="text-base font-medium text-sky-300 hover:text-sky-100 group inline-flex items-center py-2 px-4 rounded-lg transition-colors duration-200 hover:bg-sky-500/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 ">
-            See all projects
-            <BsArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-200" />
-          </div>
+          <FancyButton text="See more" className="" />
         </Link>
       </div>
     </div>

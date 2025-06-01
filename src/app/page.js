@@ -5,6 +5,9 @@ import GlobeTimeBox from "@/components/GlobeTimeBox";
 import ContactEmailBox from "@/components/ContactEmailBox";
 import TechStackBox from "@/components/TechStackBox";
 import ProjectsSection from "@/components/ProjectsSection";
+import SkillsSection from "@/components/SkillsSection";
+import AboutSection from "@/components/AboutSection";
+import ContactSection from "@/components/ContactSection";
 
 export default function HomePage() {
   return (
@@ -34,6 +37,10 @@ export default function HomePage() {
       </div>
       {/* Projects Section */}
       <ProjectsSection />
+      {/* New Skills Section */}
+      <SkillsSection />
+      <AboutSection />
+      <ContactSection />
     </main>
   );
 }
