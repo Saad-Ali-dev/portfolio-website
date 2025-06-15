@@ -69,31 +69,6 @@ export default async function ProjectDetailsPage({ params }) {
     notFound();
   }
 
-  {
-    projectData.about && projectData.about.titleIcon
-      ? (projectData.about.RenderedIcon = React.createElement(
-          projectData.about.titleIcon,
-          { className: "w-7 h-7 sm:w-8 sm:h-8 text-sky-400 mr-3" },
-        ))
-      : (projectData.about.RenderedIcon = null);
-  }
-  {
-    projectData.features && projectData.features.titleIcon
-      ? (projectData.features.RenderedIcon = React.createElement(
-          projectData.features.titleIcon,
-          { className: "w-7 h-7 sm:w-8 sm:h-8 text-sky-400 mr-3" },
-        ))
-      : (projectData.features.RenderedIcon = null);
-  }
-  {
-    projectData.technologiesUsed && projectData.technologiesUsed.titleIcon
-      ? (projectData.technologiesUsed.RenderedIcon = React.createElement(
-          projectData.technologiesUsed.titleIcon,
-          { className: "w-7 h-7 sm:w-8 sm:h-8 text-sky-400 mr-3" },
-        ))
-      : (projectData.technologiesUsed.RenderedIcon = null);
-  }
-
   return (
     <>
       <ScrollToTop />
@@ -120,7 +95,7 @@ export default async function ProjectDetailsPage({ params }) {
                 <SectionBlock
                   id={projectData.about.id}
                   title={projectData.about.title}
-                  RenderedIcon={projectData.about.RenderedIcon}
+                  iconName={projectData.about.titleIconName}
                 >
                   <AboutContent description={projectData.about.description} />
                 </SectionBlock>
@@ -130,7 +105,7 @@ export default async function ProjectDetailsPage({ params }) {
                   <SectionBlock
                     id={projectData.features.id}
                     title={projectData.features.title}
-                    RenderedIcon={projectData.features.RenderedIcon}
+                    iconName={projectData.features.titleIconName}
                   >
                     <FeaturesContent items={projectData.features.items} />
                   </SectionBlock>
@@ -140,7 +115,7 @@ export default async function ProjectDetailsPage({ params }) {
                   <SectionBlock
                     id={projectData.technologiesUsed.id}
                     title={projectData.technologiesUsed.title}
-                    RenderedIcon={projectData.technologiesUsed.RenderedIcon}
+                    iconName={projectData.technologiesUsed.titleIconName}
                   >
                     <TechnologiesContent
                       items={projectData.technologiesUsed.items}

@@ -5,7 +5,7 @@ import Image from "next/image";
 import { gsap } from "gsap";
 import { motion } from "framer-motion";
 
-export default function ProfilePicture() {
+export default function ProfilePicture({ setContentVisible }) {
   const filterId = "backgroundWarpFilter";
   const turbulenceRef = useRef(null);
   const displacementMapRef = useRef(null);
@@ -57,6 +57,8 @@ export default function ProfilePicture() {
         ease: "sine.inOut",
       });
     }
+
+    setContentVisible(true);
   }, []);
 
   return (

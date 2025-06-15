@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 
 // Variants for the main container to stagger H1, H2, P
@@ -70,7 +70,11 @@ const wavingHandVariants = {
   },
 };
 
-export default function AnimatedHeroText() {
+export default function AnimatedHeroText({ setContentVisible }) {
+  useEffect(() => {
+    setContentVisible(true);
+  }, []);
+
   return (
     <motion.div
       className="flex flex-col justify-center space-y-4 sm:space-y-6 py-4 md:py-8"
