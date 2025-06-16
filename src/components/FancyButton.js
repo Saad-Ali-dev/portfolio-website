@@ -1,10 +1,10 @@
-// components/FancyButton.js (or wherever your component is located)
+// components/FancyButton.js
 "use client";
 
 import { motion } from "framer-motion";
 import { FaArrowRight } from "react-icons/fa";
 
-const FancyButton = ({ text = "Get In Touch", className = "" }) => {
+const FancyButton = ({ text = "Get In Touch", className = "", onClick }) => {
   // Define variants for the button's overall state (background and text color changes)
   const buttonVariants = {
     rest: {
@@ -29,7 +29,7 @@ const FancyButton = ({ text = "Get In Touch", className = "" }) => {
 
   return (
     <motion.button
-      onClick={() => console.log("Button clicked")}
+      onClick={onClick} // Use the passed onClick prop
       className={`group relative flex items-center justify-center gap-3 
                  rounded-full font-medium cursor-pointer whitespace-nowrap
                  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white/40 focus:ring-offset-black/50
@@ -55,8 +55,6 @@ const FancyButton = ({ text = "Get In Touch", className = "" }) => {
           height: "32px", // Corresponds to Tailwind h-8
         }}
         variants={arrowCircleVariants} // Assign the arrow circle variants
-        // IMPORTANT: No need for 'initial' or 'whileHover' directly on this child.
-        // Its 'hover' state will be automatically triggered by the parent's 'whileHover="hover"'
         transition={{ duration: 0.3, ease: "easeInOut" }} // Consistent transition for arrow movement
       >
         <FaArrowRight className="h-4 w-4 text-zinc-800" />{" "}
