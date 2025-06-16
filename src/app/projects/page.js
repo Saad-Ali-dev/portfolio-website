@@ -36,7 +36,13 @@ export default function ProjectsPage() {
         <div className="text-center mb-12 sm:mb-16 lg:mb-20">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-100">
             My{" "}
-            <span className="bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 bg-clip-text text-transparent">
+            <span
+              className="bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 bg-clip-text text-transparent"
+              style={{
+                WebkitTextFillColor: "transparent",
+                WebkitBackgroundClip: "text",
+              }}
+            >
               Creations
             </span>
           </h1>

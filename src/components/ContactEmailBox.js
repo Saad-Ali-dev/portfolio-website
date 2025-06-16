@@ -1,3 +1,4 @@
+// ContactEmailBox.js
 "use client";
 
 import React, { useState } from "react";
@@ -10,14 +11,37 @@ export default function ContactEmailBox() {
 
   const handleCopyEmail = async () => {
     try {
-      await navigator.clipboard.writeText(email);
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        // Modern method: Use navigator.clipboard API
+        await navigator.clipboard.writeText(email);
+      } else {
+        // Fallback method: Use document.execCommand('copy')
+        // This method requires creating a temporary textarea, selecting its content,
+        // and then executing the copy command.
+        const textarea = document.createElement("textarea");
+        textarea.value = email;
+        // Make the textarea invisible and off-screen
+        textarea.style.position = "absolute";
+        textarea.style.left = "-9999px";
+        textarea.style.top = "-9999px";
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select(); // Select the text
+        document.execCommand("copy"); // Execute the copy command
+        document.body.removeChild(textarea); // Remove the temporary textarea
+        console.warn("Using fallback clipboard copy method."); // For debugging
+      }
+
       setIsCopied(true);
       setTimeout(() => {
         setIsCopied(false);
       }, 2000); // Revert icon after 2 seconds
     } catch (err) {
       console.error("Failed to copy email: ", err);
-      // Optionally, show an error message to the user
+      // Optionally, show a user-friendly error message, e.g., "Could not copy email."
+      alert(
+        "Failed to copy email. Please try manually or ensure your site is on HTTPS.",
+      );
     }
   };
 
@@ -63,6 +87,7 @@ export default function ContactEmailBox() {
           background-clip: text;
           -webkit-background-clip: text;
           color: transparent;
+          -webkit-text-fill-color: transparent;
           animation: textGlow 5s linear infinite;
           display: inline-block;
         }

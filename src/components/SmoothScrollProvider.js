@@ -13,6 +13,13 @@ export default function SmoothScrollProvider({ children }) {
   const smootherRef = useRef(null); // To help with cleanup
 
   useEffect(() => {
+    // Only initialize smooth scroll on screen widths >= 768px
+    if (window.innerWidth < 768) {
+      console.info(
+        "SmoothScrollProvider: smooth scroll disabled on small screens",
+      );
+      return;
+    }
     const wrapper = document.getElementById("smooth-wrapper");
     const content = document.getElementById("smooth-content");
 

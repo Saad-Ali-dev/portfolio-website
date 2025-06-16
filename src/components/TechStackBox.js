@@ -102,7 +102,13 @@ export default function TechStackBox() {
   return (
     <div className="bg-slate-900/70 backdrop-blur-md border border-slate-700 rounded-3xl flex flex-col items-center text-center shadow-2xl h-full">
       <h3 className="text-2xl font-semibold leading-tight px-4 sm:pt-8 py-4">
-        <span className="bg-gradient-to-r from-purple-300 via-white to-purple-400 bg-clip-text text-transparent">
+        <span
+          className="bg-gradient-to-r from-purple-300 via-white to-purple-400 bg-clip-text text-transparent"
+          style={{
+            WebkitTextFillColor: "transparent",
+            WebkitBackgroundClip: "text",
+          }}
+        >
           Passionate about cutting-edge technologies
         </span>
       </h3>

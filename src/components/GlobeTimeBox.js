@@ -52,7 +52,13 @@ export default function GlobeTimeBox() {
         {" "}
         {/* z-20 to ensure text is above globe */}
         <h3 className="text-xl sm:text-2xl font-semibold">
-          <span className="bg-gradient-to-r from-white via-sky-200 to-sky-400 bg-clip-text text-transparent">
+          <span
+            className="bg-gradient-to-r from-white via-sky-200 to-sky-400 bg-clip-text text-transparent "
+            style={{
+              WebkitTextFillColor: "transparent",
+              WebkitBackgroundClip: "text",
+            }}
+          >
             I'm very flexible with timezone communications
           </span>
         </h3>

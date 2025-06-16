@@ -13,7 +13,13 @@ export default function ProjectsSection() {
       <div className="flex flex-col items-center justify-center mb-10 sm:mb-12">
         <h2 className="text-4xl text-center sm:text-5xl font-bold pb-2">
           Featured{" "}
-          <span className="bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 bg-clip-text text-transparent">
+          <span
+            className="bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 bg-clip-text text-transparent"
+            style={{
+              WebkitTextFillColor: "transparent",
+              WebkitBackgroundClip: "text",
+            }}
+          >
             Projects
           </span>
         </h2>
